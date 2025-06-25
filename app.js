@@ -115,7 +115,7 @@ function fetchDailyQuote() {
   const timeoutId = setTimeout(() => controller.abort(), 10000);
 
   fetch(
-    "https://api.quotable.io/random?tags=inspirational&minLength=100&maxLength=150",
+    "https://api.quotable.io/random?tags=inspirational&minLength=100&maxLength=130",
     {
       signal: controller.signal,
       headers: {

@@ -42,7 +42,7 @@ body {
 }
 
 form {
-  max-width: calc(230px * 4 + 2em * 3);
+  max-width: calc(25vh * 4 + 1.5em * 3);
   width: 100%;
   display: flex;
   height: 40px;
@@ -86,17 +86,23 @@ form button img {
   padding-top: 2px;
 }
 
-.grid-container {
-  width: 100%;
-  flex-grow: 1;
-  display: grid;
-  margin: auto;
+.usefull-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  grid-template-columns: 230px 230px 230px 230px;
-  grid-template-rows: 30% 30% 30%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  gap: 2em;
+  width: auto;
+  height: auto;
+  color: #ffffff;
+  margin: 0 0 1em 0;
+}
+
+.grid-container {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(4, 25vh);
+  grid-template-rows: repeat(3, 25vh);
+  gap: 1.5em;
   grid-template-areas:
     "box-1 box-1 box-2 box-2"
     "box-1 box-1 box-3 box-4"
@@ -114,9 +120,14 @@ form button img {
 .box {
   border-radius: 10px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   backdrop-filter: blur(7px);
   padding: 8px;
+  min-height: 190px;
+}
+
+p, h2 {
+  margin: 0;
 }
 
 #daily-phrase {
@@ -124,27 +135,26 @@ form button img {
   flex-direction: column;
   align-items: center;
   color: #ffffff;
+  justify-content: space-around;
 }
 
 #daily-phrase h1 {
   font-size: 1.5em;
+  margin: 0;
   font-weight: lighter;
   text-align: center;
-  margin-bottom: 0.5em;
 }
 
 #daily-phrase :nth-child(2) {
   font-size: 1.3em;
-  height: 70px;
   text-align: start;
-  margin: 0.5em 0.5em;
-}
+  padding: 0 10px;
+} 
 
 #daily-phrase :nth-child(3) {
   width: 100%;
   font-size: 1.4em;
   text-align: end;
-  margin: 0.5em 0.5em;
   padding-right: 60px;
 }
 
@@ -196,17 +206,6 @@ button {
   accent-color: #ffffff;
 }
 
-.scroll-container p {
-  user-select: none;
-  flex-shrink: 0;
-  white-space: nowrap;
-  animation: scroll 10s linear infinite;
-}
-
-.scroll-container p::after {
-  content: "\00a0\00a0";
-}
-
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -232,8 +231,8 @@ button {
 }
 
 .signature-image {
-  width: 110%;
-  height: 110%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 10px;
 }
@@ -252,7 +251,7 @@ button {
 }
 
 #pomodoro-container p:last-child {
-  font-size: 1em;
+  font-size: 0.9em;
   text-align: center;
 }
 
@@ -260,26 +259,22 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  width: 110px;
-  height: 110px;
-  gap: 1em;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 9px;
   border: 2px solid #ffffff;
   border-radius: 100%;
-  position: relative;
+  aspect-ratio: 1 / 1;
 }
 
 .pomodoro-controls p:first-child {
-  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
   width: 100%;
-  height: 100%;
   color: #ffffff;
-  margin-bottom: 5px;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: lighter;
   pointer-events: none;
 }
@@ -289,9 +284,8 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
-  margin-top: 60px;
+  width: 20%;
+  height: 20%;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -303,8 +297,8 @@ button {
 }
 
 .pomodoro-icon {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
 }
 
 .time-moon-container {
@@ -323,6 +317,7 @@ button {
   justify-content: space-around;
   width: 100%;
   height: 100%;
+  min-height: 190px;
 }
 
 .weather-container i {
@@ -430,8 +425,7 @@ hr {
   border-radius: 10px;
 }
 
-.anime-image,
-.signature-image {
+.anime-image {
   height: auto;
   max-height: 100%;
 }
@@ -483,6 +477,7 @@ hr {
     padding: 0 8px;
   }
   form {
+    max-width: 100%;
     height: 36px;
     font-size: 1em;
   }
@@ -499,9 +494,8 @@ hr {
   .anime-image {
     object-position: 10% center;
   }
-  .poke-container img {
-    width: auto;
-    height: 110px;
+  #pokemon-image {
+    scale: 1;
   }
   .poke-form {
     width: 90%;
@@ -517,8 +511,8 @@ hr {
     align-items: center;
   }
   .signature-image {
-    width: 75%;
-    height: auto;
+    width: auto;
+    height: 100%;
   }
   .themes-container {
     justify-content: space-around;
@@ -549,13 +543,8 @@ hr {
     flex-direction: column;
   }
   .signature-image {
-    width: 60%;
-    height: auto;
-  }
-  .pomodoro-controls button,
-  .pomodoro-icon {
-    width: 36px;
-    height: 36px;
+    width: auto;
+    height: 100%;
   }
   #music {
     max-width: 100%;
