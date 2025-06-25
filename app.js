@@ -1,41 +1,45 @@
 console.log("Merapp is running!");
 
-
 const RateLimiter = {
   limits: new Map(),
-  
+
   canMakeRequest(key, maxRequests = 5, windowMs = 10000) {
     const now = Date.now();
     const windowStart = now - windowMs;
-    
+
     if (!this.limits.has(key)) {
       this.limits.set(key, []);
     }
-    
+
     const requests = this.limits.get(key);
-    
+
     while (requests.length > 0 && requests[0] < windowStart) {
       requests.shift();
     }
-    
+
     if (requests.length >= maxRequests) {
       return false;
     }
-    
+
     requests.push(now);
     return true;
-  }
+  },
 };
 
 const CacheManager = {
   maxPokemonCache: 1,
-  
+
   cleanOldCache() {
     try {
       const today = new Date().toISOString().slice(0, 10);
-      
-      const dailyCacheKeys = ['dailyQuote', 'moonPhase', 'weather', 'randomPokemon'];
-      dailyCacheKeys.forEach(key => {
+
+      const dailyCacheKeys = [
+        "dailyQuote",
+        "moonPhase",
+        "weather",
+        "randomPokemon",
+      ];
+      dailyCacheKeys.forEach((key) => {
         const cached = localStorage.getItem(key);
         if (cached) {
           try {
@@ -50,38 +54,41 @@ const CacheManager = {
           }
         }
       });
-      
-      
-      const randomPokemon = localStorage.getItem('randomPokemon');
+
+      const randomPokemon = localStorage.getItem("randomPokemon");
       let currentPokemonId = null;
-      
+
       if (randomPokemon) {
         try {
           const { id, date } = JSON.parse(randomPokemon);
           if (date === today) {
             currentPokemonId = id;
           }
-        } catch (e) {
-          
-        }
+        } catch (e) {}
       }
-      
-      const pokemonKeys = Object.keys(localStorage).filter(key => key.startsWith('pokemon_'));
-      pokemonKeys.forEach(key => {
-        const pokemonId = key.replace('pokemon_', '');
+
+      const pokemonKeys = Object.keys(localStorage).filter((key) =>
+        key.startsWith("pokemon_")
+      );
+      pokemonKeys.forEach((key) => {
+        const pokemonId = key.replace("pokemon_", "");
         if (pokemonId != currentPokemonId) {
           localStorage.removeItem(key);
         }
       });
-      
-      const remainingPokemon = Object.keys(localStorage).filter(key => key.startsWith('pokemon_')).length;
+
+      const remainingPokemon = Object.keys(localStorage).filter((key) =>
+        key.startsWith("pokemon_")
+      ).length;
       if (remainingPokemon > 1) {
-        console.log(`Cleaned old Pokemon images, keeping only current day Pokemon`);
+        console.log(
+          `Cleaned old Pokemon images, keeping only current day Pokemon`
+        );
       }
     } catch (e) {
       console.warn("Cache cleanup error:", e);
     }
-  }
+  },
 };
 
 function fetchDailyQuote() {
@@ -109,11 +116,11 @@ function fetchDailyQuote() {
 
   fetch(
     "https://api.quotable.io/random?tags=inspirational&minLength=100&maxLength=150",
-    { 
+    {
       signal: controller.signal,
       headers: {
-        'Accept': 'application/json',
-      }
+        Accept: "application/json",
+      },
     }
   )
     .then((res) => {
@@ -134,7 +141,8 @@ function fetchDailyQuote() {
     })
     .catch((err) => {
       console.error("Quote fetch error:", err);
-      document.getElementById("quote-text").textContent = "Success is not final, failure is not fatal: it is the courage to continue that counts.";
+      document.getElementById("quote-text").textContent =
+        "Success is not final, failure is not fatal: it is the courage to continue that counts.";
       document.getElementById("quote-author").textContent = "Winston Churchill";
     })
     .finally(() => {
@@ -168,12 +176,15 @@ function fetchWeather() {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 8000);
 
-  fetch("https://www.el-tiempo.net/api/json/v2/provincias/40/municipios/40194", {
-    signal: controller.signal,
-    headers: {
-      'Accept': 'application/json',
+  fetch(
+    "https://www.el-tiempo.net/api/json/v2/provincias/40/municipios/40194",
+    {
+      signal: controller.signal,
+      headers: {
+        Accept: "application/json",
+      },
     }
-  })
+  )
     .then((res) => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return res.json();
@@ -186,7 +197,7 @@ function fetchWeather() {
       console.error("Weather fetch error:", err);
       const fallbackData = {
         temperatura_actual: "N/A",
-        stateSky: { description: "desconocido" }
+        stateSky: { description: "desconocido" },
       };
       updateWeatherUI(fallbackData);
     })
@@ -255,8 +266,8 @@ function fetchMoonPhase() {
   fetch(`https://api.farmsense.net/v1/moonphases/?d=${timestamp}`, {
     signal: controller.signal,
     headers: {
-      'Accept': 'application/json',
-    }
+      Accept: "application/json",
+    },
   })
     .then((res) => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -354,7 +365,7 @@ function setPokemonImage(id) {
       }
       const imageUrl = URL.createObjectURL(blob);
       img.src = imageUrl;
-      
+
       const reader = new FileReader();
       reader.onload = () => {
         localStorage.setItem(`pokemon_${id}`, reader.result);
@@ -377,19 +388,19 @@ async function getPokemonIdByName(name) {
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 5000);
-    
+
     const res = await fetch(
       `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`,
-      { 
+      {
         signal: controller.signal,
         headers: {
-          'Accept': 'application/json',
-        }
+          Accept: "application/json",
+        },
       }
     );
-    
+
     clearTimeout(timeoutId);
-    
+
     if (!res.ok) return null;
     const data = await res.json();
     return data.id;
@@ -411,7 +422,7 @@ async function searchPokemon() {
     return;
   }
 
-  if (!RateLimiter.canMakeRequest('pokemon-search', 5, 10000)) {
+  if (!RateLimiter.canMakeRequest("pokemon-search", 5, 10000)) {
     console.warn("Rate limit exceeded for Pokemon search - wait 10 seconds");
     border.style.borderColor = "orange";
     return;
@@ -606,11 +617,11 @@ function msUntilMidnight() {
 
 setTimeout(() => {
   CacheManager.cleanOldCache();
-  
+
   fetchDailyQuote();
   fetchRandomPokemon();
   fetchMoonPhase();
-  
+
   setInterval(() => {
     CacheManager.cleanOldCache();
     fetchDailyQuote();
