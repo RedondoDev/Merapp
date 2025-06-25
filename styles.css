@@ -1,0 +1,581 @@
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: Josefin Sans, sans-serif;
+  margin: auto;
+  padding: 0;
+  background-image: url("assets/background/dandelion.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  transition: background-image 0.8s ease-in-out;
+}
+
+.crystal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #8FEF3C10;
+  z-index: 200;
+  pointer-events: none;
+  transition: background-image 1s ease-in-out;
+}
+
+.main-wrapper {
+  max-width: 1010px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px 10px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.transparent-div {
+  background-color: #fff6E524;
+  border: 2px solid #ffffff27;;
+}
+
+#water-icon,
+#sakura-icon {
+  filter: blur(2px);
+}
+
+form {
+  width: 100%;
+  display: flex;
+  height: 40px;
+  margin: 2em auto;
+  backdrop-filter: blur(7px);
+  border-radius: 10px;
+  background-color: #fff6e524;
+  border: 2px solid #ffffff27;
+}
+
+form input {
+  width: 100%;
+  height: 100%;
+  padding: 0 1em;
+  border: none;
+  border-radius: 10px 0 0 10px;
+  font-size: 1.2em;
+  color: #ffffff;
+  background-color: transparent;
+  outline: none;
+}
+
+form button {
+  width: 35px;
+  height: auto;
+  margin: 3px;
+  border: none;
+  border-radius: 0 10px 10px 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #fff6e524;
+  border-radius: 10px;
+}
+
+form button img {
+  width: 25px;
+  height: 25px;
+  padding-top: 2px;
+}
+
+.grid-container {
+  width: 100%;
+  display: grid;
+  margin: auto;
+  justify-content: center;
+  grid-template-columns: 230px 230px 230px 230px;
+  grid-template-rows: 230px 230px 230px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  gap: 2em;
+  grid-template-areas:
+    "box-1 box-1 box-2 box-2"
+    "box-1 box-1 box-3 box-4"
+    "box-5 box-6 box-3 box-7";
+}
+
+.anime-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.box {
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  backdrop-filter: blur(7px);
+  padding: 8px;
+}
+
+#daily-phrase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+}
+
+#daily-phrase h1 {
+  font-size: 1.5em;
+  font-weight: lighter;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+#daily-phrase :nth-child(2) {
+  font-size: 1.3em;
+  height: 70px;
+  text-align: start;
+  margin: 0.5em 0.5em;
+}
+
+#daily-phrase :nth-child(3) {
+  width: 100%;
+  font-size: 1.4em;
+  text-align: end;
+  margin: 0.5em 0.5em;
+  padding-right: 60px;
+}
+
+#music {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  color: #ffffff;
+  padding: 5px;
+}
+
+#music h2 {
+  font-size: 1.3em;
+  font-weight: lighter;
+}
+
+button {
+  width: 110px;
+  height: 110px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#mute-button {
+  width: 100px;
+  height: 100px;
+}
+
+#mute-icon {
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.music-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  font-size: 0.8em;
+}
+
+.volume-slider {
+  width: 80%;
+  overflow: hidden;
+  display: flex;
+  accent-color: #FFFFFF;
+}
+
+.scroll-container p {
+  user-select: none;
+  flex-shrink: 0;
+  white-space: nowrap;
+  animation: scroll 10s linear infinite;
+}
+
+.scroll-container p::after {
+  content: "\00a0\00a0";
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.music-icons {
+  width: 30px;
+  height: 30px;
+}
+
+.music-controls button:first-of-type {
+  transform: rotate(180deg);
+}
+
+#signature-container {
+  background-color: transparent;
+  border: none;
+  backdrop-filter: blur(0);
+}
+
+.signature-image {
+  width: 110%;
+  height: 110%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+#pomodoro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  color: #ffffff;
+}
+
+#pomodoro-container h2 {
+  font-size: 1.3em;
+  font-weight: lighter;
+}
+
+#pomodoro-container p:last-child {
+  font-size: 1em;
+  text-align: center;
+}
+
+.pomodoro-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 110px;
+  height: 110px;
+  gap: 1em;
+  border: 2px solid #ffffff;
+  border-radius: 100%;
+  position: relative;
+}
+
+.pomodoro-controls p:first-child {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  margin-bottom: 5px;
+  font-size: 1.5em;
+  font-weight: lighter;
+  pointer-events: none;
+}
+
+.pomodoro-controls button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  margin-top: 60px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.pomodoro-controls button :hover {
+  background-color: #fff6e524;
+  border-radius: 50%;
+}
+
+.pomodoro-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.time-moon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffffff;
+}
+
+.weather-container,
+.moon-phase-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+}
+
+.weather-container i {
+  font-size: 4.5em;
+  color: white;
+}
+
+.moon-phase-container i {
+  font-size: 5.5em;
+  color: white;
+}
+
+.weather-container h2,
+.moon-phase-container h2 {
+  font-size: 1.3em;
+  font-weight: lighter;
+}
+
+.weather-container p {
+  font-size: 1.2em;
+}
+
+hr {
+  width: 90%;
+  border: 1px solid #ffffff70;
+}
+
+.poke-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  color: #ffffff;
+}
+
+.poke-container h2 {
+  font-size: 1.3em;
+  font-weight: lighter;
+}
+
+#pokemon-image {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 10px;
+  scale: 1.2;
+  filter: brightness(0);
+  transition: filter 2s ease-in-out;
+}
+
+.poke-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  color: black;
+  height: 36px;
+  width: 90%;
+  max-width: 220px;
+  border: 2px solid #ffffff27;
+  border-radius: 10px;
+  margin: 0.5em auto 0 auto;
+  padding: 0 4px 0 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.poke-div input {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 1em;
+  color: black;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0 0 0 10px;
+  height: 80%;
+}
+
+.poke-div button {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 2px;
+  padding: 0;
+}
+
+.poke-div button img {
+  width: 20px;
+  height: 20px;
+  filter: invert(1);
+  padding: 0;
+}
+
+.poke-div button :hover {
+  background-color: #fff6e524;
+  border-radius: 10px;
+}
+
+.anime-image,
+.signature-image {
+  height: auto;
+  max-height: 100%;
+}
+
+.themes-container {
+  width: 250px;
+  height: 60px;
+  position: relative;
+  bottom: 0;
+  left: 1%;
+  display: flex;
+  justify-content: space-around;
+  align-items: end;
+}
+
+.themes-container button {
+  border: 1px solid #ffffff24;
+  border-radius: 10px 10px 0 0;
+  background-color: #FFF6E524;
+}
+
+.themes-container button:hover {
+  background-color: #fff6e540;
+  width: 60px;
+  height: 55px;
+  transition: width 0.2s, height 0.2s;
+}
+
+.themes-container button img {
+  margin-top: 5px;
+  width: 80%;
+  height: 80%;
+}
+
+.theme-water,
+.theme-sakura {
+  width: 55px;
+  height: 50px;
+}
+
+.theme-dandelion {
+  width: 50px;
+  height: 45px;
+} 
+
+/* Responsive: tablets */
+@media (max-width: 1100px) {
+  .main-wrapper {
+    max-width: 85vw;
+    padding: 0 8px;
+  }
+  form {
+    height: 36px;
+    font-size: 1em;
+  }
+  .grid-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "box-1 box-3"
+      "box-2 box-2"
+      "box-4 box-5"
+      "box-6 box-7";
+    gap: 1em;
+  }
+  .anime-image {
+    object-position: 10% center;
+  }
+  .poke-container img {
+    width: auto;
+    height: 110px;
+  }
+  .poke-form {
+    width: 90%;
+    height: 30px;
+    font-size: 0.9em;
+    margin: 1em auto;
+  }
+  #signature-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .signature-image {
+    width: 75%;
+    height: auto;
+  }
+  .themes-container {
+    left: 0;
+    width: 100vw;
+  }
+}
+
+/* Responsive: móviles */
+@media (max-width: 700px) {
+  form {
+    margin: 1em auto;
+    height: 34px;
+    font-size: 0.95em;
+  }
+  .grid-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "box-1 box-1"
+      "box-1 box-1"
+      "box-2 box-2"
+      "box-3 box-3"
+      "box-5 box-5"
+      "box-6 box-6"
+      "box-4 box-4"
+      "box-7 box-7";
+    gap: 0.7em;
+  }
+  .time-moon-container {
+    flex-direction: column;
+  }
+  .signature-image {
+    width: 60%;
+    height: auto;
+  }
+  .pomodoro-controls button,
+  .pomodoro-icon {
+    width: 36px;
+    height: 36px;
+  }
+  #music {
+    max-width: 100%;
+  }
+  .music-controls {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+  }
+  .volume-slider {
+    width: 80%;
+  }
+  .music-controls p {
+    font-size: 1.3em;
+  }
+  .music-controls button,
+  .music-icons {
+    width: 30px;
+    height: 30px;
+  }
+}

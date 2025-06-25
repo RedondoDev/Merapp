@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Merapp</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <form action="https://www.google.com/search" method="get" class="transparent-div">
+        <input type="text" id="searchBar" name="q" autocomplete="off" />
+        <button type="submit">
+          <img src="assets/searchIcon.svg" alt="Search Icon" />
+        </button>
+      </form>
+      <div class="crystal"></div>
+      <div class="grid-container">
+        <div class="box transparent-div" style="grid-area: box-1">
+          <img
+            class="anime-image"
+            src="assets/violet-evergarden.png"
+            alt="anime image"
+          />
+        </div>
+        <div id="daily-phrase" class="box transparent-div" style="grid-area: box-2">
+          <h1>DAILY QUOTE</h1>
+          <p>
+            <i id="quote-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </i>
+          </p>
+          <p><i id="quote-author">Lorem ipsum.</i></p>
+        </div>
+        <div class="box time-moon-container transparent-div" style="grid-area: box-3">
+          <div class="weather-container">
+            <h2>WEATHER</h2>
+            <i id="weather-icon" class="wi wi-na"></i>
+            <p id="degrees">25ºC</p>
+          </div>
+        <hr>
+          <div class="moon-phase-container">
+            <h2>MOON PHASE</h2>
+            <i id="moon-icon" class="wi wi-moon-waxing-crescent-5"></i>
+            <p id="moon-status">Lorem Ipsum.</p>
+          </div>
+        </div>
+        <div class="box poke-container transparent-div" style="grid-area: box-4">
+          <h2>POKEMON</h2>
+          <img src="assets/test-pokemon.png" id="pokemon-image" alt="pokemon image" />
+          <form class="poke-div" action="" method="get">
+            <input type="text" id="pokemonSearch" name="pokemonSearch" autocomplete="off" />
+            <button onclick="searchPokemon()" type="button">
+              <img src="assets/searchIcon.svg" alt="Search Icon" style="filter: invert(1);"/>
+            </button>
+          </form>
+        </div>
+        <div id="music" class="box transparent-div" style="grid-area: box-5">
+          <h2>MUSIC</h2>
+          <button onclick="toggleLofi()" type="button" id="mute-button">
+            <img class="mute-icon" src="assets/unmute.svg" alt="mute music" />
+          </button>
+          <div class="music-controls">
+            <input class="volume-slider" id="volume-slider" type="range" min="0" max="100" value="60">
+          </div>
+        </div>
+        <div id="pomodoro-container" class="box transparent-div" style="grid-area: box-6">
+          <h2>POMODORO</h2>
+          <div class="pomodoro-controls">
+            <p id="timer-display">50:00</p>
+            <button onclick="startPauseTimer()" type="button">
+              <img
+                id="start-pause-button"
+                class="pomodoro-icon"
+                src="assets/start.svg"
+                alt="start pomodoro"
+              />
+            </button>
+          </div>
+          <p id="pomodoro-status">Rest time</p>
+        </div>
+        <div id="signature-container" class="box" style="grid-area: box-7">
+          <img
+            class="signature-image"
+            src="assets/signature.png"
+            alt="signature image"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="themes-container">
+      <button onclick="changeTheme(1)" type="button" class="theme-dandelion transparent-div">
+        <img id="dandelion-icon" src="assets/dandelion-icon.svg" alt="Dandelion Icon" />
+      </button>
+      <button onclick="changeTheme(2)" type="button" class="theme-water transparent-div">
+        <img id="water-icon" src="assets/water-icon.svg" alt="Water Icon" />
+      </button>
+      <button onclick="changeTheme(3)" type="button" class="theme-sakura transparent-div">
+        <img id="sakura-icon" src="assets/sakura-icon.svg" alt="Sakura Icon" />
+      </button>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
