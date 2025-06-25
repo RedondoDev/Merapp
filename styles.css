@@ -6,9 +6,12 @@ html {
 body {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  align-items: center;
+  padding: 0 30px;
   font-family: Josefin Sans, sans-serif;
   margin: auto;
-  padding: 0;
   background-image: url("assets/background/dandelion.png");
   background-size: cover;
   background-position: center;
@@ -22,25 +25,15 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #8FEF3C10;
+  background-color: #8fef3c10;
   z-index: 200;
   pointer-events: none;
   transition: background-image 1s ease-in-out;
 }
 
-.main-wrapper {
-  max-width: 1010px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 20px 10px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-
 .transparent-div {
-  background-color: #fff6E524;
-  border: 2px solid #ffffff27;;
+  background-color: #fff6e524;
+  border: 2px solid #ffffff27;
 }
 
 #water-icon,
@@ -49,6 +42,7 @@ body {
 }
 
 form {
+  max-width: calc(230px * 4 + 2em * 3);
   width: 100%;
   display: flex;
   height: 40px;
@@ -94,11 +88,12 @@ form button img {
 
 .grid-container {
   width: 100%;
+  flex-grow: 1;
   display: grid;
   margin: auto;
   justify-content: center;
   grid-template-columns: 230px 230px 230px 230px;
-  grid-template-rows: 230px 230px 230px;
+  grid-template-rows: 30% 30% 30%;
   margin-top: 10px;
   margin-bottom: 10px;
   gap: 2em;
@@ -198,7 +193,7 @@ button {
   width: 80%;
   overflow: hidden;
   display: flex;
-  accent-color: #FFFFFF;
+  accent-color: #ffffff;
 }
 
 .scroll-container p {
@@ -442,20 +437,19 @@ hr {
 }
 
 .themes-container {
-  width: 250px;
+  width: 100%;
   height: 60px;
-  position: relative;
   bottom: 0;
-  left: 1%;
   display: flex;
-  justify-content: space-around;
+  justify-content: start;
   align-items: end;
+  gap: 40px;
 }
 
 .themes-container button {
   border: 1px solid #ffffff24;
   border-radius: 10px 10px 0 0;
-  background-color: #FFF6E524;
+  background-color: #fff6e524;
 }
 
 .themes-container button:hover {
@@ -480,7 +474,7 @@ hr {
 .theme-dandelion {
   width: 50px;
   height: 45px;
-} 
+}
 
 /* Responsive: tablets */
 @media (max-width: 1100px) {
@@ -527,8 +521,7 @@ hr {
     height: auto;
   }
   .themes-container {
-    left: 0;
-    width: 100vw;
+    justify-content: space-around;
   }
 }
 
