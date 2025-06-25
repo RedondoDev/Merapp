@@ -162,7 +162,6 @@ function fetchWeather() {
     }
   }
 
-  // Evitar múltiples peticiones simultáneas
   if (window.fetchingWeather) return;
   window.fetchingWeather = true;
 
@@ -185,7 +184,6 @@ function fetchWeather() {
     })
     .catch((err) => {
       console.error("Weather fetch error:", err);
-      // Usar datos por defecto si hay error
       const fallbackData = {
         temperatura_actual: "N/A",
         stateSky: { description: "desconocido" }
@@ -319,7 +317,6 @@ function fetchRandomPokemon() {
 }
 
 function setPokemonImage(id) {
-  // Verificar si ya existe la imagen cacheada para este ID
   const cachedImage = localStorage.getItem(`pokemon_${id}`);
   if (cachedImage) {
     let img = document.getElementById("pokemon-image");
