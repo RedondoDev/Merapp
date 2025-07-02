@@ -1,5 +1,20 @@
 console.log("Merapp is running!");
 
+function preloadBackgroundImages() {
+  const backgroundImages = [
+    'assets/background/dandelion.png',
+    'assets/background/water.png', 
+    'assets/background/sakura.png'
+  ];
+  
+  backgroundImages.forEach(imagePath => {
+    const img = new Image();
+    img.src = imagePath;
+  });
+}
+
+preloadBackgroundImages();
+
 const RateLimiter = {
   limits: new Map(),
 
@@ -601,10 +616,10 @@ function toggleLofi() {
   const lofiButton = document.getElementById("mute-button");
   if (lofi.paused) {
     lofi.play();
-    document.querySelector(".mute-icon").src = "assets/mute.svg";
+    document.querySelector(".mute-icon").src = "assets/unmute.svg";
   } else {
     lofi.pause();
-    document.querySelector(".mute-icon").src = "assets/unmute.svg";
+    document.querySelector(".mute-icon").src = "assets/mute.svg";
   }
 }
 
